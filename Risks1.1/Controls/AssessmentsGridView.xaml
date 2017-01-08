@@ -77,11 +77,46 @@
                                                 </DataTemplate>
                                             </DataGridTemplateColumn.CellTemplate>
                                         </DataGridTemplateColumn>
-                                        <DataGridTextColumn Width="120*" MinWidth="50"  Binding="{Binding Probability}" IsReadOnly="False"   Header="Probability" />
-                                        <DataGridTextColumn Width="120*" MinWidth="50"  Binding="{Binding InfluenceProb}" IsReadOnly="False"   Header="InfluenceProb" />
-                                        <DataGridTextColumn Width="120*" MinWidth="50"  Binding="{Binding Danger}" IsReadOnly="False"   Header="Danger" />
-                                        <DataGridTextColumn Width="120*" MinWidth="50"  Binding="{Binding ExternalRate}" IsReadOnly="False"   Header="ExternalRate" />
-                                        <DataGridTextColumn Width="120*" MinWidth="50"  Binding="{Binding ProtectionDegree}" IsReadOnly="False"   Header="ProtectionDegree" />
+                                        <DataGridTemplateColumn Header="Probability" >
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Rates, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Probability}"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                        <!--<DataGridTextColumn Width="120*" MinWidth="50"  Binding="{Binding Probability}" IsReadOnly="False"   Header="Probability" />-->
+                                        <DataGridTemplateColumn Header="InfluenceProb" >
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Rates, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding InfluenceProb}"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                        <!--<DataGridTextColumn Width="120*" MinWidth="50"  Binding="{Binding InfluenceProb}" IsReadOnly="False"   Header="InfluenceProb" />-->
+                                        <DataGridTemplateColumn Header="Danger" >
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Rates, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Danger}"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                        <!--<DataGridTextColumn Width="120*" MinWidth="50"  Binding="{Binding Danger}" IsReadOnly="False"   Header="Danger" />-->
+                                        <DataGridTemplateColumn Header="ExternalRate" >
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Rates, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding ExternalRate}"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                        <!--<DataGridTextColumn Width="120*" MinWidth="50"  Binding="{Binding ExternalRate}" IsReadOnly="False"   Header="ExternalRate" />-->
+                                        <DataGridTemplateColumn Header="ProtectionDegree" >
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Rates, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding ProtectionDegree}"/>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                         
                                         
                                     </DataGrid.Columns>
                                 </DataGrid>

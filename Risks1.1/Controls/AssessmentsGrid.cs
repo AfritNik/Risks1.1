@@ -1,5 +1,6 @@
 
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.IO;
@@ -25,6 +26,9 @@ namespace WpfApplication1
             filteredCollection = new ObservableCollection<Assessment>();
             if (EnterpriseFactory.Instance.Experts.Count > 0)
                 SelectedExpert = EnterpriseFactory.Instance.Experts[0];
+            Rates = new ObservableCollection<int>();
+            for (int i = 1; i <= 10; i++)
+                Rates.Add(i);
         }
         #region Properties
         public static DependencyProperty SelectedExpertProperty = DependencyProperty.Register("SelectedExpert", typeof(Expert), typeof(AssessmentsGrid), new PropertyMetadata(SelectedExpertChanged));
@@ -74,6 +78,12 @@ namespace WpfApplication1
         {
             get { return (ObservableCollection<Assessment>)GetValue(filteredCollectionProperty); }
             set { SetValue(filteredCollectionProperty, value); }
+        }
+        public static DependencyProperty RatesProperty = DependencyProperty.Register("Rates", typeof(ObservableCollection<int>), typeof(AssessmentsGrid));
+        public ObservableCollection<int> Rates
+        {
+            get { return (ObservableCollection<int>)GetValue(RatesProperty); }
+            set { SetValue(RatesProperty, value); }
         }
         #endregion
         #region Commands
