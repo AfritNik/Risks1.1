@@ -9,9 +9,7 @@
         <ResourceDictionary Source="../Common/CustomDataGridView.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
-    <local:ExpertIDConverter x:Key="ExpertIDConverter"/>
-    <local:RiskIDConverter x:Key="RiskIDConverter"/>
-    <local:CollectionFilterConvert x:Key="CollectionFilterConvert"/>
+    <local:RiskIDToNameConverter x:Key="RiskIDToNameConverter"/>
 
     <Style x:Key="{x:Type local:ResultGrid}" TargetType="{x:Type local:ResultGrid}">
 
@@ -46,15 +44,15 @@
                                     </Border.Background>
                                 </Border>
                                 <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0">
-                                    <Button x:Name="AddTag" Margin="5,0,0,0" Content="Test" Style="{StaticResource toolBarAddButtonStyle}" Command="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=AddAssessmentCommand}" />
-                                    <Button x:Name="DeleteTag" Margin="5,0,0,0" Content="Test" Style="{StaticResource toolBarDeleteButtonStyle}" Command="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DeleteAssessmentCommand}" CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedAssessment}" />
-                                    <Button x:Name="SaveAll" Margin="5,0,0,0" Content="SaveAll" Style="{StaticResource toolBarSaveToFileButtonStyle}"  Command="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SaveAllCommand}" />
-                                    <ComboBox x:Name="Expert" Margin="5,0,0,0" ItemsSource="{Binding Source={x:Static common:EnterpriseFactory.Instance}, Path=Experts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedExpert, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                                    <Button x:Name="AddTag" Margin="5,0,0,0" Content="Test" Style="{StaticResource toolBarAddButtonStyle}" Command="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=UpdateCommand}" />
+                                    <!--<Button x:Name="DeleteTag" Margin="5,0,0,0" Content="Test" Style="{StaticResource toolBarDeleteButtonStyle}" Command="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DeleteAssessmentCommand}" CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedAssessment}" />
+                                    <Button x:Name="SaveAll" Margin="5,0,0,0" Content="SaveAll" Style="{StaticResource toolBarSaveToFileButtonStyle}"  Command="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SaveAllCommand}" />-->
+                                    <!--<ComboBox x:Name="Expert" Margin="5,0,0,0" ItemsSource="{Binding Source={x:Static common:EnterpriseFactory.Instance}, Path=Experts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedExpert, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />-->
                                     <!--<Button x:Name="AddRangeTag" Margin="5,0,0,0" Content="Test" Style="{StaticResource toolBarAddRangeButtonStyle}" Command="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=AddRangeTagsCommand}" />-->
                                 </StackPanel>
                                 <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" x:Name="mainGrid" HorizontalAlignment="Left" VerticalAlignment="Top" CellStyle="{StaticResource GridCellStyle}" 
 		                                  AlternationCount="2" AutoGenerateColumns="False" MinRowHeight="26" Style="{StaticResource DataGridStyle}" ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}" RowStyle="{StaticResource GridRowStyle}"
-		                                  ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=filteredCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedAssessment, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Single"
+		                                  ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=filteredCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedResult, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Single"
                                           CanUserAddRows="False">
                                     <DataGrid.RowHeaderTemplate>
                                         <DataTemplate>
@@ -62,26 +60,12 @@
                                         </DataTemplate>
                                     </DataGrid.RowHeaderTemplate>
                                     <DataGrid.Columns>
-                                        <DataGridTextColumn  Width="40*" MinWidth="50" Binding="{Binding ID}" IsReadOnly="True"   Header="ID"/>
-                                        <DataGridTemplateColumn Header="Expert" >
-                                            <DataGridTemplateColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <ComboBox ItemsSource="{Binding Source={x:Static common:EnterpriseFactory.Instance}, Path=Experts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding ExpertID, Converter={StaticResource ExpertIDConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                                </DataTemplate>
-                                            </DataGridTemplateColumn.CellTemplate>
-                                        </DataGridTemplateColumn>
-                                        <DataGridTemplateColumn Header="Risk" >
-                                            <DataGridTemplateColumn.CellTemplate>
-                                                <DataTemplate>
-                                                    <ComboBox ItemsSource="{Binding Source={x:Static common:EnterpriseFactory.Instance}, Path=Risks, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding RiskID, Converter={StaticResource RiskIDConverter}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                                                </DataTemplate>
-                                            </DataGridTemplateColumn.CellTemplate>
-                                        </DataGridTemplateColumn>
-                                        <DataGridTextColumn Width="120*" MinWidth="50"  Binding="{Binding Probability}" IsReadOnly="False"   Header="Probability" />
+                                        <DataGridTextColumn  Width="40*" MinWidth="50" Binding="{Binding ID, Converter={StaticResource RiskIDToNameConverter}}" IsReadOnly="True"   Header="Risk"/>
+
+                                        <DataGridTextColumn Width="120*" MinWidth="50"  Binding="{Binding Importance}" IsReadOnly="False"   Header="Importance" />
                                         <DataGridTextColumn Width="120*" MinWidth="50"  Binding="{Binding InfluenceProb}" IsReadOnly="False"   Header="InfluenceProb" />
-                                        <DataGridTextColumn Width="120*" MinWidth="50"  Binding="{Binding Danger}" IsReadOnly="False"   Header="Danger" />
                                         <DataGridTextColumn Width="120*" MinWidth="50"  Binding="{Binding ExternalRate}" IsReadOnly="False"   Header="ExternalRate" />
-                                        <DataGridTextColumn Width="120*" MinWidth="50"  Binding="{Binding ProtectionDegree}" IsReadOnly="False"   Header="ProtectionDegree" />
+                                        <DataGridTextColumn Width="120*" MinWidth="50"  Binding="{Binding ProtectionRate}" IsReadOnly="False"   Header="ProtectionRate" />
                                         
                                     </DataGrid.Columns>
                                 </DataGrid>

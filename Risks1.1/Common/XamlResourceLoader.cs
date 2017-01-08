@@ -63,6 +63,7 @@ namespace WpfApplication1.Common
              "/WpfApplication1;component/Controls/ExpertsGridView.xaml",
              "/WpfApplication1;component/Controls/RisksGridView.xaml",
              "/WpfApplication1;component/Controls/AssessmentsGridView.xaml",
+             "/WpfApplication1;component/Controls/ResultGridView.xaml",
              "/WpfApplication1;component/Controls/MessageBoxWinView.xaml",
              //"/WpfApplication1;component/Controls/OptionsControlView.xaml",
 

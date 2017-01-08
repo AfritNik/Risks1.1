@@ -107,6 +107,7 @@
     <Compile Include="Common\BinaryHelper.cs" />
     <Compile Include="Common\ConvertHelper.cs" />
     <Compile Include="Common\Xml_Helper.cs" />
+    <Compile Include="Controls\Result.cs" />
     <Compile Include="Controls\Assessment.cs" />
     <Compile Include="Common\ActionCommand.cs" />
     <Compile Include="Common\EnterpriseFactory.cs" />

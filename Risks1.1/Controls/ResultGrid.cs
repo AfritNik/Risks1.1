@@ -1,8 +1,6 @@
 
 using System;
 using System.Collections.ObjectModel;
-using System.Globalization;
-using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -22,14 +20,14 @@ namespace WpfApplication1
 
         public ResultGrid()
         {
-            filteredCollection = new ObservableCollection<Assessment>();
-            if (EnterpriseFactory.Instance.Experts.Count > 0)
-                SelectedExpert = EnterpriseFactory.Instance.Experts[0];
+            filteredCollection = new ObservableCollection<Result>();
+            //if (EnterpriseFactory.Instance.Experts.Count > 0)
+            //    SelectedExpert = EnterpriseFactory.Instance.Experts[0];
         }
         #region Properties
-        public static DependencyProperty SelectedExpertProperty = DependencyProperty.Register("SelectedExpert", typeof(Expert), typeof(ResultGrid), new PropertyMetadata(SelectedExpertChanged));
+        public static DependencyProperty SelectedInfluenceProperty = DependencyProperty.Register("SelectedInfluence", typeof(int), typeof(ResultGrid), new PropertyMetadata(SelectedInfluenceChanged));
 
-        private static void SelectedExpertChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        private static void SelectedInfluenceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             ResultGrid control = d as ResultGrid;
             control.FilterCollection();
@@ -37,56 +35,76 @@ namespace WpfApplication1
 
         private void FilterCollection()
         {
-            if (SelectedExpert!=null && SelectedExpert.ID>=0)
+            foreach (Risk rsk in EnterpriseFactory.Instance.Risks)
             {
-                filteredCollection = new ObservableCollection<Assessment>();
-                foreach (Assessment item in EnterpriseFactory.Instance.Assessments)
+                int count = 0;
+                int Importance = 0;
+                int ExtRate = 0;
+                int ProtRate = 0;
+                int ProbabilityAverage = 0;
+                foreach (Assessment obj in EnterpriseFactory.Instance.Assessments)
                 {
-                    if (item.ExpertID == SelectedExpert.ID)
+                    if (obj.RiskID==rsk.ID)
                     {
-                        filteredCollection.Add(item);
+                        count++;
+                        Importance += obj.InfluenceProb * obj.Danger;
+                        ExtRate += obj.ExternalRate;
+                        ProtRate += obj.ProtectionDegree;
+                        ProbabilityAverage += obj.Probability;
                     }
                 }
+                filteredCollection.Add(new Result(Helper.FindFreeNumber<Result>(filteredCollection), Importance / count, ExtRate / count, ProtRate / count, ProbabilityAverage / count));
             }
-            else
-            {
-                foreach (Assessment item in EnterpriseFactory.Instance.Assessments)
-                {
-                    filteredCollection.Add(item);                    
-                }
-            }
+            //if (SelectedExpert!=null && SelectedExpert.ID>=0)
+            //{
+            //    filteredCollection = new ObservableCollection<Result>();
+            //    foreach (Result item in EnterpriseFactory.Instance.Results)
+            //    {
+            //        if (item.ExpertID == SelectedExpert.ID)
+            //        {
+            //            filteredCollection.Add(item);
+            //        }
+            //    }
+            //}
+            //else
+            //{
+            //    foreach (Result item in EnterpriseFactory.Instance.Results)
+            //    {
+            //        filteredCollection.Add(item);                    
+            //    }
+            //}
             
         }
 
-        public Expert SelectedExpert
+        public int SelectedExpert
         {
-            get { return (Expert)GetValue(SelectedExpertProperty); }
-            set { SetValue(SelectedExpertProperty, value); }
+            get { return (int)GetValue(SelectedInfluenceProperty); }
+            set { SetValue(SelectedInfluenceProperty, value); }
         }
-        public static DependencyProperty SelectedAssessmentProperty = DependencyProperty.Register("SelectedAssessment", typeof(Assessment), typeof(ResultGrid));
-        public Assessment SelectedAssessment
+        public static DependencyProperty SelectedResultProperty = DependencyProperty.Register("SelectedResult", typeof(Result), typeof(ResultGrid));
+        public Result SelectedResult
         {
-            get { return (Assessment)GetValue(SelectedAssessmentProperty); }
-            set { SetValue(SelectedAssessmentProperty, value); }
+            get { return (Result)GetValue(SelectedResultProperty); }
+            set { SetValue(SelectedResultProperty, value); }
         }
-        public static DependencyProperty filteredCollectionProperty = DependencyProperty.Register("filteredCollection", typeof(ObservableCollection<Assessment>), typeof(ResultGrid));
-        public ObservableCollection<Assessment> filteredCollection
+        public static DependencyProperty filteredCollectionProperty = DependencyProperty.Register("filteredCollection", typeof(ObservableCollection<Result>), typeof(ResultGrid));
+        public ObservableCollection<Result> filteredCollection
         {
-            get { return (ObservableCollection<Assessment>)GetValue(filteredCollectionProperty); }
+            get { return (ObservableCollection<Result>)GetValue(filteredCollectionProperty); }
             set { SetValue(filteredCollectionProperty, value); }
         }
         #endregion
         #region Commands
-        private ICommand onAddAssessmentCommand = null;
-        public ICommand AddAssessmentCommand
+        private ICommand onUpdateCommand = null;
+        public ICommand UpdateCommand
         {
             get
             {
-                if (onAddAssessmentCommand == null)
+                if (onUpdateCommand == null)
                 {
-                    onAddAssessmentCommand = new ActionCommand(parameter => AddAssessmentMethod());
+                    onUpdateCommand = new ActionCommand(parameter => UpdateMethod());
                 }
-                return onAddAssessmentCommand;
+                return onUpdateCommand;
             }
         }
         private ICommand onSaveAllCommand = null;
@@ -96,139 +114,126 @@ namespace WpfApplication1
             {
                 if (onSaveAllCommand == null)
                 {
-                    onSaveAllCommand = new ActionCommand(parameter => SaveAllInFile());
+                    //onSaveAllCommand = new ActionCommand(parameter => SaveAllInFile());
                 }
                 return onSaveAllCommand;
             }
         }
-        private void AddAssessmentMethod()
+        private void UpdateMethod()
         {
-            EnterpriseFactory.Instance.Assessments.Add(new Assessment(Helper.FindFreeNumber<Assessment>(EnterpriseFactory.Instance.Assessments), SelectedExpert.ID, 1, 1, 1, 1, 1, 1));
+            //EnterpriseFactory.Instance.Results.Add(new Result(Helper.FindFreeNumber<Result>(EnterpriseFactory.Instance.Results), SelectedExpert.ID, 1, 1, 1, 1, 1, 1));
             FilterCollection();
         }
 
 
 
-        private ICommand onDeleteAssessmentCommand = null;
-        public ICommand DeleteAssessmentCommand
-        {
-            get
-            {
-                if (onDeleteAssessmentCommand == null)
-                {
-                    onDeleteAssessmentCommand = new ActionCommand(parameter =>
-                    {
-                        if (parameter == null)
-                        {
-                            MessageBoxWin.ShowDialog("Please Select Assessment to delete");
-                            return;
-                        }
-                        NS_MessageBoxResult result = MessageBoxWin.ShowDialog("Deleting Assessment", "Sure? Last chance to refuse", NS_MessageBoxButtons.YesNo);
-                        if (result == NS_MessageBoxResult.Yes)
-                        {
-                            Assessment DelAss = parameter as Assessment;
-                            EnterpriseFactory.Instance.Assessments.Remove(DelAss);
-                            FilterCollection();
-                        }
-
-                    });
-                }
-                return onDeleteAssessmentCommand;
-            }
-        }
-
+        
         #endregion
         #region Methods
-        public static RoutedCommand AddNewAssessment { get; set; }
-        public static void OnAddNewAssessment(object sender, ExecutedRoutedEventArgs e)
-        {
-            ResultGrid control = sender as ResultGrid;
-            if (control == null) return;
-            if (e.OriginalSource is DataGridCell)
-            {
-                try
-                {
+        //public static RoutedCommand AddNewResult { get; set; }
+        //public static void OnAddNewResult(object sender, ExecutedRoutedEventArgs e)
+        //{
+        //    ResultGrid control = sender as ResultGrid;
+        //    if (control == null) return;
+        //    if (e.OriginalSource is DataGridCell)
+        //    {
+        //        try
+        //        {
 
-                }
-                catch (InvalidCastException ex)
-                {
-                    control.AddAssessmentMethod();
-                }
+        //        }
+        //        catch (InvalidCastException ex)
+        //        {
+        //            control.UpdateMethod();
+        //        }
 
-            }
+        //    }
 
-        }
+        //}
         #region CommandMethods
 
 
         #endregion
         private static void InitializeCommands()
         {
-            AddNewAssessment = new RoutedCommand("AddNewAssessment", typeof(ResultGrid));
-            CommandManager.RegisterClassCommandBinding(typeof(ResultGrid),
-                new CommandBinding(AddNewAssessment, OnAddNewAssessment));
+            
         }
 
 
-        private void SaveAllInFile()
-        {
-            XmlDocument xDoc = new XmlDocument();
+        //private void SaveAllInFile()
+        //{
+        //    XmlDocument xDoc = new XmlDocument();
 
-            XmlNode GlobalNode = xDoc.CreateXmlDeclaration("1.0", "utf-8", null);
-            xDoc.AppendChild(GlobalNode);
+        //    XmlNode GlobalNode = xDoc.CreateXmlDeclaration("1.0", "utf-8", null);
+        //    xDoc.AppendChild(GlobalNode);
 
-            XmlNode rootNode = xDoc.CreateElement("AllData");
-            if (EnterpriseFactory.Instance.Experts.Count != 0)
-            {
-                XmlElement experts = xDoc.CreateElement("Experts");
-                rootNode.AppendChild(experts);
-                foreach (Expert exp in EnterpriseFactory.Instance.Experts)
-                {
-                    XmlElement expert = xDoc.CreateElement("Expert");
-                    experts.AppendChild(expert);
-                    exp.SerializeProperties(expert);
-                }
-            }
-            else
-            {
-                //Show error
-            }
-            if (EnterpriseFactory.Instance.Risks.Count != 0)
-            {
-                XmlElement risks = xDoc.CreateElement("Risks");
-                rootNode.AppendChild(risks);
-                foreach (Risk rsk in EnterpriseFactory.Instance.Risks)
-                {
-                    XmlElement risk = xDoc.CreateElement("Risk");
-                    risks.AppendChild(risk);
-                    rsk.SerializeProperties(risk);
-                }
-            }
-            else
-            {
-                //Show error
-            }
-            if (EnterpriseFactory.Instance.Assessments.Count != 0)
-            {
-                XmlElement assessments = xDoc.CreateElement("Assessments");
-                rootNode.AppendChild(assessments);
-                foreach (Assessment ass in EnterpriseFactory.Instance.Assessments)
-                {
-                    XmlElement assessment = xDoc.CreateElement("Assessment");
-                    assessments.AppendChild(assessment);
-                    ass.SerializeProperties(assessment);
-                }
-            }
-            else
-            {
-                //Show error
-            }
-            xDoc.AppendChild(rootNode);
-            xDoc.Save(System.IO.Path.Combine(EnterpriseFactory.AppDataDirectory, "Config.xml"));
-        }
+        //    XmlNode rootNode = xDoc.CreateElement("AllData");
+        //    if (EnterpriseFactory.Instance.Experts.Count != 0)
+        //    {
+        //        XmlElement experts = xDoc.CreateElement("Experts");
+        //        rootNode.AppendChild(experts);
+        //        foreach (Expert exp in EnterpriseFactory.Instance.Experts)
+        //        {
+        //            XmlElement expert = xDoc.CreateElement("Expert");
+        //            experts.AppendChild(expert);
+        //            exp.SerializeProperties(expert);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        //Show error
+        //    }
+        //    if (EnterpriseFactory.Instance.Risks.Count != 0)
+        //    {
+        //        XmlElement risks = xDoc.CreateElement("Risks");
+        //        rootNode.AppendChild(risks);
+        //        foreach (Risk rsk in EnterpriseFactory.Instance.Risks)
+        //        {
+        //            XmlElement risk = xDoc.CreateElement("Risk");
+        //            risks.AppendChild(risk);
+        //            rsk.SerializeProperties(risk);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        //Show error
+        //    }
+        //    if (EnterpriseFactory.Instance.Results.Count != 0)
+        //    {
+        //        XmlElement Results = xDoc.CreateElement("Results");
+        //        rootNode.AppendChild(Results);
+        //        foreach (Result ass in EnterpriseFactory.Instance.Results)
+        //        {
+        //            XmlElement Result = xDoc.CreateElement("Result");
+        //            Results.AppendChild(Result);
+        //            ass.SerializeProperties(Result);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        //Show error
+        //    }
+        //    xDoc.AppendChild(rootNode);
+        //    xDoc.Save(System.IO.Path.Combine(EnterpriseFactory.AppDataDirectory, "Config.xml"));
+        //}
         #endregion
 
     }
+    public class RiskIDToNameConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (value is int)
+            {
+                Risk rsk = Helper.FindObjById<Risk>(EnterpriseFactory.Instance.Risks, (int)value);
+                if (rsk != null) return rsk.Name;
+                else return null;
+            }
+            else return null;
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotSupportedException();
+        }
+    }
 
- 
 }

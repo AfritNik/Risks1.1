@@ -34,6 +34,7 @@ namespace WpfApplication1
             ExpertsGrid experts = new ExpertsGrid();
             RisksGrid risks = new RisksGrid();
             AssessmentsGrid asm = new AssessmentsGrid();
+            ResultGrid result = new ResultGrid();
             
             //EnterpriseFactory.Instance.Experts.Add(new Expert(1, "Nik"));
             //EnterpriseFactory.Instance.Risks.Add(new Risk(1, "NesterovExam"));
@@ -41,6 +42,7 @@ namespace WpfApplication1
             OptControl.ItemsCollection.Add(new OptionsSelectorItem("Experts", experts));
             OptControl.ItemsCollection.Add(new OptionsSelectorItem("Risks", risks));
             OptControl.ItemsCollection.Add(new OptionsSelectorItem("Assessments", asm));
+            OptControl.ItemsCollection.Add(new OptionsSelectorItem("Results", result));
             OptControl.ItemsCollection.Add(new OptionsSelectorItem("Charts", asm));
             OptControl.SelectedMenuItem = OptControl.ItemsCollection[0];
         }

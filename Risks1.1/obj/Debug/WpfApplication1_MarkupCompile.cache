@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-G:\Job\WpfApplication1\WpfApplication1\obj\Debug\
+C:\Users\oskik\Documents\GitHub\Risks\Risks1.1\obj\Debug\
 WpfApplication1
 none
 false
 DEBUG;TRACE
-G:\Job\WpfApplication1\WpfApplication1\App.xaml
-10-1021715895
+C:\Users\oskik\Documents\GitHub\Risks\Risks1.1\App.xaml
+11645868789
 
-22-380353376
+241263478435
 131569487696
-Common\CustomControlsStyles.xaml;Controls\AssessmentsGridView.xaml;Controls\RisksGridView.xaml;Controls\MessageBoxWinView.xaml;Controls\OptionsControlView.xaml;Controls\ExpertsGridView.xaml;MergedDict.xaml;Common\CommonStyles.xaml;Common\CustomDataGridView.xaml;MainWindow.xaml;
+Common\CustomControlsStyles.xaml;Controls\ResultGridView.xaml;Controls\AssessmentsGridView.xaml;Controls\RisksGridView.xaml;Controls\MessageBoxWinView.xaml;Controls\OptionsControlView.xaml;Controls\ExpertsGridView.xaml;MergedDict.xaml;Common\CommonStyles.xaml;Common\CustomDataGridView.xaml;MainWindow.xaml;
 
 False
 
