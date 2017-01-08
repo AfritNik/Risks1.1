@@ -1,0 +1,1415 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    >
+
+    <Style x:Key="toolBarImportExportButtonStyle" TargetType="{x:Type ToggleButton}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Height" Value="32" />
+        <Setter Property="Width" Value="32" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}" >
+                    <Grid>
+                        <Border x:Name="mainBorder" BorderThickness="1" CornerRadius="5" Background="Transparent" BorderBrush="Transparent" />
+                        <Path x:Name="icon" Stretch="Fill" Data="M 265.202,509.206C 264.547,508.551 264.547,507.478 265.202,506.824L 279.859,492.17C 280.336,491.69 281.063,491.541 281.692,491.805C 281.906,491.89 282.087,492.015 282.241,492.17C 282.551,492.479 282.735,492.904 282.735,493.361L 282.729,501.565L 316.531,501.562C 316.979,501.562 317.4,501.743 317.719,502.058C 318.035,502.375 318.216,502.799 318.216,503.243L 318.216,512.777C 318.213,513.228 318.035,513.655 317.719,513.971C 317.407,514.284 316.979,514.462 316.531,514.462L 282.735,514.462L 282.735,522.662C 282.735,523.35 282.324,523.965 281.695,524.219C 281.063,524.479 280.336,524.34 279.853,523.857L 265.202,509.206M 317.725,544.651C 318.38,543.996 318.38,542.923 317.725,542.268L 303.068,527.615C 302.591,527.134 301.864,526.986 301.235,527.249C 301.021,527.335 300.84,527.46 300.686,527.615C 300.376,527.924 300.192,528.348 300.192,528.806L 300.198,537.01L 266.396,537.006C 265.948,537.006 265.527,537.187 265.207,537.503C 264.892,537.819 264.711,538.244 264.711,538.688L 264.711,548.221C 264.714,548.672 264.892,549.1 265.207,549.416C 265.52,549.728 265.948,549.906 266.396,549.906L 300.192,549.906L 300.192,558.107C 300.192,558.794 300.603,559.41 301.232,559.663C 301.864,559.923 302.591,559.785 303.074,559.301L 317.725,544.651M 258.307,494.787C 258.307,493.314 257.113,492.12 255.641,492.12L 250.53,492.12C 249.057,492.12 247.863,493.314 247.863,494.787L 247.863,559.676C 247.863,561.148 249.057,562.342 250.53,562.342L 255.641,562.342C 257.113,562.342 258.307,561.148 258.307,559.676L 258.307,494.787 Z " 
+                              HorizontalAlignment="Center" Height="19" VerticalAlignment="Center" Width="19" Effect="{DynamicResource dark-90}">
+                            <Path.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="White"/>
+                                    <GradientStop Color="#FFC5D7FD" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Path.Fill>
+                        </Path>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="White" />
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF85A5E5"/>
+                                        <GradientStop Color="#FF5585E5" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="#7FE9EFFF" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="White" />
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF2E4E95"/>
+                                        <GradientStop Color="#3324498F" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="BorderBrush">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF163C8E" Offset="0"/>
+                                        <GradientStop Color="#FF32549C" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="icon" Property="Fill">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF31539B"/>
+                                        <GradientStop Color="#FF254385" Offset="0.982"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="Background" Value="Transparent" />
+                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="Transparent" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <ControlTemplate x:Key="transparentButton" TargetType="{x:Type Button}">
+
+        <Border Grid.ColumnSpan="2" Background="Transparent" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" x:Name="MainBorder" >
+            <TextBlock Grid.Column="1" x:Name="txt" Foreground="#FF2D2D2D" Text="{TemplateBinding Content}" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="7,0,7,0" FontFamily="Microsoft Sans Serif" FontSize="13" />
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="MainBorder" Property="Background" Value="#FF0495FF" />
+                <Setter TargetName="txt" Property="Foreground" Value="White" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+
+    </ControlTemplate>
+    <Style x:Key="toolBarEditModeButtonStyle" TargetType="{x:Type ToggleButton}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Height" Value="32" />
+        <!--<Setter Property="Width" Value="100" />-->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="32"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border x:Name="mainBorder" BorderThickness="1" CornerRadius="5" Grid.ColumnSpan="2" Background="Transparent" BorderBrush="Transparent" />
+                        <Path x:Name="icon" Grid.Column="0" Stretch="Uniform" Data="F1 M -123.563,691.352L -136.727,730.844L -97.2353,717.68L -123.563,691.352 Z M 39.2191,566.333L 27.7844,554.898C 23.6709,550.784 17.0046,550.784 12.8912,554.898L 2.81074,564.978L 29.1387,591.306L 39.217,581.228L 39.217,581.228C 43.3305,577.114 43.3305,570.446 39.2191,566.333 Z M 0.177952,657.126L -7.2697,649.678L -10.806,646.142L -31.8684,667.204L -25.0589,674.014L -35.5901,684.545L -31.4155,688.719L -27.241,692.894L -16.7098,682.363L -9.26218,689.81L -19.7933,700.342L -11.4442,708.691L -0.913052,698.16L 6.53457,705.607L -3.9966,716.138L 10.7091,730.844L 42.3026,699.251L 0.177952,657.126 Z M -111.49,587.582L -104.043,595.03L -114.574,605.561L -106.225,613.91L -95.6935,603.379L -88.2459,610.827L -98.7771,621.358L -94.6025,625.532L -90.4279,629.707L -79.8968,619.176L -72.4492,626.623L -82.9803,637.155L -76.173,643.962L -116.116,683.905L -89.7877,710.232L -49.8451,670.29L -18.2516,638.696L 21.691,598.754L -4.63691,572.426L -44.5795,612.368L -55.5614,601.387L -63.009,593.939L -105.134,551.814L -136.727,583.408L -122.021,598.114L -111.49,587.582 Z" 
+                              HorizontalAlignment="Center" Height="18" VerticalAlignment="Center" Width="22" Effect="{DynamicResource dark-90}">
+                            <Path.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="White"/>
+                                    <GradientStop Color="#FFC5D7FD" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Path.Fill>
+                        </Path>
+                        <TextBlock x:Name="Description" Grid.Column="1" Margin="0,0,10,0" Text="Edit Mode" FontFamily="Microsoft Sans Serif" FontSize="12" Foreground="#FFCEDFFF" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="White" />
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF85A5E5"/>
+                                        <GradientStop Color="#FF5585E5" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="#7FE9EFFF" />
+                            <Setter TargetName="Description" Property="Foreground" Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="White" />
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF2E4E95"/>
+                                        <GradientStop Color="#3324498F" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="BorderBrush">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF163C8E" Offset="0"/>
+                                        <GradientStop Color="#FF32549C" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="icon" Property="Fill">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF31539B"/>
+                                        <GradientStop Color="#FF254385" Offset="0.982"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="Background" Value="Transparent" />
+                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="Transparent" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="toolBarSaveLoadButtonStyle" TargetType="{x:Type ToggleButton}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Height" Value="32" />
+        <!--<Setter Property="Width" Value="100" />-->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="32"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border x:Name="mainBorder" BorderThickness="1" CornerRadius="5" Grid.ColumnSpan="2" Background="Transparent" BorderBrush="Transparent" />
+                        <Path x:Name="icon" Grid.Column="0" Stretch="Uniform" Data="M 265.202,509.206C 264.547,508.551 264.547,507.478 265.202,506.824L 279.859,492.17C 280.336,491.69 281.063,491.541 281.692,491.805C 281.906,491.89 282.087,492.015 282.241,492.17C 282.551,492.479 282.735,492.904 282.735,493.361L 282.729,501.565L 316.531,501.562C 316.979,501.562 317.4,501.743 317.719,502.058C 318.035,502.375 318.216,502.799 318.216,503.243L 318.216,512.777C 318.213,513.228 318.035,513.655 317.719,513.971C 317.407,514.284 316.979,514.462 316.531,514.462L 282.735,514.462L 282.735,522.662C 282.735,523.35 282.324,523.965 281.695,524.219C 281.063,524.479 280.336,524.34 279.853,523.857L 265.202,509.206M 317.725,544.651C 318.38,543.996 318.38,542.923 317.725,542.268L 303.068,527.615C 302.591,527.134 301.864,526.986 301.235,527.249C 301.021,527.335 300.84,527.46 300.686,527.615C 300.376,527.924 300.192,528.348 300.192,528.806L 300.198,537.01L 266.396,537.006C 265.948,537.006 265.527,537.187 265.207,537.503C 264.892,537.819 264.711,538.244 264.711,538.688L 264.711,548.221C 264.714,548.672 264.892,549.1 265.207,549.416C 265.52,549.728 265.948,549.906 266.396,549.906L 300.192,549.906L 300.192,558.107C 300.192,558.794 300.603,559.41 301.232,559.663C 301.864,559.923 302.591,559.785 303.074,559.301L 317.725,544.651M 258.307,494.787C 258.307,493.314 257.113,492.12 255.641,492.12L 250.53,492.12C 249.057,492.12 247.863,493.314 247.863,494.787L 247.863,559.676C 247.863,561.148 249.057,562.342 250.53,562.342L 255.641,562.342C 257.113,562.342 258.307,561.148 258.307,559.676L 258.307,494.787 Z " 
+                              HorizontalAlignment="Center" Height="18" VerticalAlignment="Center" Width="22" Effect="{DynamicResource dark-90}">
+                            <Path.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="White"/>
+                                    <GradientStop Color="#FFC5D7FD" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Path.Fill>
+                        </Path>
+                        <TextBlock x:Name="Description" Grid.Column="1" Margin="0,0,10,0" Text="Save/Load" FontFamily="Microsoft Sans Serif" FontSize="12" Foreground="#FFCEDFFF" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="White" />
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF85A5E5"/>
+                                        <GradientStop Color="#FF5585E5" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="#7FE9EFFF" />
+                            <Setter TargetName="Description" Property="Foreground" Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="White" />
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF2E4E95"/>
+                                        <GradientStop Color="#3324498F" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="BorderBrush">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF163C8E" Offset="0"/>
+                                        <GradientStop Color="#FF32549C" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="icon" Property="Fill">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF31539B"/>
+                                        <GradientStop Color="#FF254385" Offset="0.982"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="Background" Value="Transparent" />
+                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="Transparent" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="toolBarGridButtonStyle" TargetType="{x:Type ToggleButton}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Height" Value="32" />
+        <!--<Setter Property="Width" Value="100" />-->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="32"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border x:Name="mainBorder" BorderThickness="1" CornerRadius="5" Grid.ColumnSpan="2" Background="Transparent" BorderBrush="Transparent" />
+                        <Path x:Name="icon" Grid.Column="0" Stretch="Uniform" Data="F1 M -81.0072,379.135L -81.0072,377.002L -83.1406,377.002L -83.1406,374.869L -85.2739,374.869L -85.2739,377.002L -90.6102,377.002L -90.6102,374.869L -92.7436,374.869L -92.7436,377.002L -98.0797,377.002L -98.0797,374.869L -100.207,374.869L -100.207,377.002L -102.341,377.002L -102.341,379.135L -100.207,379.135L -100.207,384.472L -102.341,384.472L -102.341,386.605L -100.207,386.605L -100.207,391.941L -102.341,391.941L -102.341,394.069L -100.207,394.069L -100.207,396.202L -98.074,396.202L -98.074,394.069L -92.7378,394.069L -92.7378,396.202L -90.6045,396.202L -90.6045,394.069L -85.2683,394.069L -85.2683,396.202L -83.1406,396.202L -83.1406,394.069L -81.0072,394.069L -81.0072,391.935L -83.1406,391.935L -83.1406,386.599L -81.0072,386.599L -81.0072,384.466L -83.1406,384.466L -83.1406,379.13L -81.0072,379.13L -81.0072,379.135 Z M -92.7378,391.935L -98.074,391.935L -98.074,386.599L -92.7378,386.599L -92.7378,391.935 Z M -92.7378,384.472L -98.074,384.472L -98.074,379.135L -92.7378,379.135L -92.7378,384.472 Z M -85.2739,391.935L -90.6102,391.935L -90.6102,386.599L -85.2739,386.599L -85.2739,391.935 Z M -85.2739,384.472L -90.6102,384.472L -90.6102,379.135L -85.2739,379.135L -85.2739,384.472 Z" 
+                              HorizontalAlignment="Center" Height="18" VerticalAlignment="Center" Width="22" Effect="{DynamicResource dark-90}">
+                            <Path.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="White"/>
+                                    <GradientStop Color="#FFC5D7FD" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Path.Fill>
+                        </Path>
+                        <TextBlock x:Name="Description" Grid.Column="1" Margin="0,0,10,0" Text="Grid" FontFamily="Microsoft Sans Serif" FontSize="12" Foreground="#FFCEDFFF" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="White" />
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF85A5E5"/>
+                                        <GradientStop Color="#FF5585E5" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="#7FE9EFFF" />
+                            <Setter TargetName="Description" Property="Foreground" Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="White" />
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF2E4E95"/>
+                                        <GradientStop Color="#3324498F" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="BorderBrush">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF163C8E" Offset="0"/>
+                                        <GradientStop Color="#FF32549C" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="icon" Property="Fill">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF31539B"/>
+                                        <GradientStop Color="#FF254385" Offset="0.982"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="Background" Value="Transparent" />
+                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="Transparent" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="toolBarTagsButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Height" Value="32" />
+        <!--<Setter Property="Width" Value="100" />-->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="32"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border x:Name="mainBorder" BorderThickness="1" CornerRadius="5" Grid.ColumnSpan="2" Background="Transparent" BorderBrush="Transparent" />
+                        <Path x:Name="icon" Grid.Column="0" Stretch="Uniform" Data="M22.290001,21.996997L22.290001,27.552993 29.412003,27.552993 29.412003,21.996997z M12.447998,21.996997L12.447998,27.552993 19.805,27.552993 19.805,21.996997z M2.5910034,21.996997L2.5910034,27.552993 9.9570007,27.552993 9.9570007,21.996997z M22.290001,14.420005L22.290001,19.508015 29.412003,19.508015 29.412003,14.420005z M12.447998,14.420005L12.447998,19.506001 12.447998,19.508015 19.805,19.508015 19.805,14.420005z M2.5920029,14.420005L2.5920029,19.506001 9.9580002,19.506001 9.9580002,14.420005z M22.289001,6.2010158L22.289001,11.929009 29.411003,11.929009 29.411003,6.2010158z M12.447998,6.2010158L12.447998,11.929009 19.805,11.929009 19.805,6.2010158z M2.5920029,6.2000087L2.5920029,11.928002 9.9580002,11.928002 9.9580002,6.2000087z M0,0L32,0 32,30.342999 0,30.342999z" 
+                              HorizontalAlignment="Center" Height="18" VerticalAlignment="Center" Width="22" Effect="{DynamicResource dark-90}">
+                            <Path.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="White"/>
+                                    <GradientStop Color="#FFC5D7FD" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Path.Fill>
+                        </Path>
+                        <TextBlock x:Name="Description" Margin="0,0,10,0" Grid.Column="1" Text="Tags" FontFamily="Microsoft Sans Serif" FontSize="12" Foreground="#FFCEDFFF" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="White" />
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF85A5E5"/>
+                                        <GradientStop Color="#FF5585E5" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="#7FE9EFFF" />
+                            <Setter TargetName="Description" Property="Foreground" Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="White" />
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF2E4E95"/>
+                                        <GradientStop Color="#3324498F" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="BorderBrush">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF163C8E" Offset="0"/>
+                                        <GradientStop Color="#FF32549C" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="icon" Property="Fill">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF31539B"/>
+                                        <GradientStop Color="#FF254385" Offset="0.982"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="Background" Value="Transparent" />
+                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="Transparent" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="toolBarToFrontButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Height" Value="32" />
+        <!--<Setter Property="Width" Value="100" />-->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="32"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border x:Name="mainBorder" BorderThickness="1" CornerRadius="5" Grid.ColumnSpan="2" Background="Transparent" BorderBrush="Transparent" />
+                        <Path x:Name="icon" Grid.Column="0" Stretch="Uniform" Data="M41.806999,23.288999L50.464998,23.288999 50.464998,46.435 27.322001,46.435 27.322001,38.073001 41.806999,38.073001z M11.198,7.4639994L39.120001,7.4639994 39.120001,35.386001 11.198,35.386001z M0,0L23.143999,0 23.143999,4.7759998 8.5120003,4.7759998 8.5120003,23.142999 0,23.142999z" 
+                              HorizontalAlignment="Center" Height="18" VerticalAlignment="Center" Width="22" Effect="{DynamicResource dark-90}">
+                            <Path.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="White"/>
+                                    <GradientStop Color="#FFC5D7FD" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Path.Fill>
+                        </Path>
+                        <TextBlock x:Name="Description" Margin="0,0,10,0" Grid.Column="1" Text="Bring to Front" FontFamily="Microsoft Sans Serif" FontSize="12" Foreground="#FFCEDFFF" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="White" />
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF85A5E5"/>
+                                        <GradientStop Color="#FF5585E5" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="#7FE9EFFF" />
+                            <Setter TargetName="Description" Property="Foreground" Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="White" />
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF2E4E95"/>
+                                        <GradientStop Color="#3324498F" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="BorderBrush">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF163C8E" Offset="0"/>
+                                        <GradientStop Color="#FF32549C" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="icon" Property="Fill">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF31539B"/>
+                                        <GradientStop Color="#FF254385" Offset="0.982"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="Background" Value="Transparent" />
+                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="Transparent" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="toolBarToBackButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Height" Value="32" />
+        <!--<Setter Property="Width" Value="100" />-->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="32"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border x:Name="mainBorder" BorderThickness="1" CornerRadius="5" Grid.ColumnSpan="2" Background="Transparent" BorderBrush="Transparent" />
+                        <Path x:Name="icon" Grid.Column="0" Stretch="Uniform" Data="M33.605999,32.759998L58.428999,32.759998 58.428999,57.580997 33.605999,57.580997z M27.359,10.806999L43.906999,10.806999 43.906999,30.056999 30.902999,30.056999 30.902999,44.413999 10.300999,44.413999 10.300999,27.356998 27.359,27.356998z M0,0L24.484999,0 24.484999,24.486999 0,24.486999z" 
+                              HorizontalAlignment="Center" Height="18" VerticalAlignment="Center" Width="22" Effect="{DynamicResource dark-90}">
+                            <Path.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="White"/>
+                                    <GradientStop Color="#FFC5D7FD" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Path.Fill>
+                        </Path>
+                        <TextBlock x:Name="Description" Margin="0,0,10,0" Grid.Column="1" Text="Send To Back" FontFamily="Microsoft Sans Serif" FontSize="12" Foreground="#FFCEDFFF" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="White" />
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF85A5E5"/>
+                                        <GradientStop Color="#FF5585E5" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="#7FE9EFFF" />
+                            <Setter TargetName="Description" Property="Foreground" Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="White" />
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF2E4E95"/>
+                                        <GradientStop Color="#3324498F" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="BorderBrush">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF163C8E" Offset="0"/>
+                                        <GradientStop Color="#FF32549C" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="icon" Property="Fill">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF31539B"/>
+                                        <GradientStop Color="#FF254385" Offset="0.982"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="Background" Value="Transparent" />
+                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="Transparent" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="toolBarSaveToFileButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Height" Value="32" />
+        <!--<Setter Property="Width" Value="100" />-->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="32"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border x:Name="mainBorder" BorderThickness="1" CornerRadius="5" Grid.ColumnSpan="2" Background="Transparent" BorderBrush="Transparent" />
+                        <Path x:Name="icon" Grid.Column="0" Stretch="Uniform" Data="M58.087635,37.91074L47.872219,48.125874 43.038265,43.283699 41.153744,45.166451 47.872219,51.884777 59.972256,39.793491z M50.563049,31.73C57.949932,31.73 64,37.779644 64,45.166451 64,52.553158 57.949932,58.603001 50.563049,58.603001 43.176067,58.603001 37.125999,52.553158 37.125999,45.166451 37.125999,37.779644 43.176067,31.73 50.563049,31.73z M33.032001,0L40.381001,0 40.381001,16.236 33.032001,16.236z M5.0388451,0L13.576872,0 13.576872,15.676368C13.576872,17.995482,15.456882,19.875292,17.775993,19.875292L39.191006,19.875292C41.510117,19.875292,43.389931,17.995482,43.389931,15.676368L43.389931,0 49.177559,0 56.966999,7.789382 56.966999,30.375652C55.002491,29.522047 52.83918,29.042944 50.564068,29.042944 41.672218,29.042944 34.440281,36.274784 34.440281,45.166538 34.440281,49.536861 36.193592,53.500183 39.026005,56.407002L5.0388451,56.407002C2.255872,56.407002,0,54.150986,0,51.368172L0,5.038847C0,2.2558709,2.255872,4.6670634E-08,5.0388451,0z" 
+                              HorizontalAlignment="Center" Height="18" VerticalAlignment="Center" Width="22" Effect="{DynamicResource dark-90}">
+                            <Path.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="White"/>
+                                    <GradientStop Color="#FFC5D7FD" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Path.Fill>
+                        </Path>
+                        <TextBlock x:Name="Description" Margin="0,0,10,0" Grid.Column="1" Text="Save" FontFamily="Microsoft Sans Serif" FontSize="12" Foreground="#FFCEDFFF" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="White" />
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF85A5E5"/>
+                                        <GradientStop Color="#FF5585E5" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="#7FE9EFFF" />
+                            <Setter TargetName="Description" Property="Foreground" Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="White" />
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF2E4E95"/>
+                                        <GradientStop Color="#3324498F" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="BorderBrush">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF163C8E" Offset="0"/>
+                                        <GradientStop Color="#FF32549C" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="icon" Property="Fill">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF31539B"/>
+                                        <GradientStop Color="#FF254385" Offset="0.982"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="Background" Value="Transparent" />
+                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="Transparent" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="toolBarLoadFromFileButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Height" Value="32" />
+        <!--<Setter Property="Width" Value="100" />-->
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="32"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border x:Name="mainBorder" BorderThickness="1" CornerRadius="5" Grid.ColumnSpan="2" Background="Transparent" BorderBrush="Transparent" />
+                        <Path x:Name="icon" Grid.Column="0" Stretch="Uniform" Data="M45.963548,8.269645L62.665147,25.065546 45.963548,39.871244 45.963548,31.963644C45.963548,31.963644 17.120617,24.075571 9.909945,39.871244 9.9099454,35.922571 12.530199,16.167482 45.963548,16.167483z M0,0L41.778571,0 41.778571,4.1795139 41.778571,8.3590277 37.598714,8.3590277 37.598714,4.1795139 4.1798577,4.1795139 4.1798577,45.954649 37.598714,45.954649 37.598714,41.775137 41.778571,41.775137 41.778571,45.954649 41.778571,50.134165 37.598714,50.134165 0,50.134165 0,45.954649 0,4.1795139z" 
+                              HorizontalAlignment="Center" Height="18" VerticalAlignment="Center" Width="22" Effect="{DynamicResource dark-90}">
+                            <Path.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="White"/>
+                                    <GradientStop Color="#FFC5D7FD" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Path.Fill>
+                        </Path>
+                        <TextBlock x:Name="Description" Margin="0,0,10,0" Grid.Column="1" Text="Load" FontFamily="Microsoft Sans Serif" FontSize="12" Foreground="#FFCEDFFF" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="White" />
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF85A5E5"/>
+                                        <GradientStop Color="#FF5585E5" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="#7FE9EFFF" />
+                            <Setter TargetName="Description" Property="Foreground" Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="White" />
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF2E4E95"/>
+                                        <GradientStop Color="#3324498F" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="BorderBrush">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF163C8E" Offset="0"/>
+                                        <GradientStop Color="#FF32549C" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="icon" Property="Fill">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF31539B"/>
+                                        <GradientStop Color="#FF254385" Offset="0.982"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="Background" Value="Transparent" />
+                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="Transparent" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="toolBarDeleteWithTipButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Height" Value="32" />
+
+        <Setter Property="Width" Value="100" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="32"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border x:Name="mainBorder" BorderThickness="1" CornerRadius="5" Grid.ColumnSpan="2" Background="Transparent" BorderBrush="Transparent" />
+                        <Path x:Name="icon" Grid.Column="0" Stretch="Uniform" Data="M51.527958,0L64,12.4741 44.47221,32.001027 64,51.52871 51.528,64.000001 32.000016,44.472668 12.471823,64.000001 0.0010004044,51.528802 19.528015,32.001088 0,12.473726 12.472,0.0010004044 31.999884,19.528773z" 
+                              HorizontalAlignment="Center" Height="18" VerticalAlignment="Center" Width="22" Effect="{DynamicResource dark-90}">
+                            <Path.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="White"/>
+                                    <GradientStop Color="#FFC5D7FD" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Path.Fill>
+                        </Path>
+                        <TextBlock x:Name="Description" Margin="0,0,10,0" Grid.Column="1" Text="Delete" FontFamily="Microsoft Sans Serif" FontSize="12" Foreground="#FFCEDFFF" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="White" />
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF85A5E5"/>
+                                        <GradientStop Color="#FF5585E5" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="#7FE9EFFF" />
+                            <Setter TargetName="Description" Property="Foreground" Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="White" />
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF2E4E95"/>
+                                        <GradientStop Color="#3324498F" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="BorderBrush">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF163C8E" Offset="0"/>
+                                        <GradientStop Color="#FF32549C" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="icon" Property="Fill">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF31539B"/>
+                                        <GradientStop Color="#FF254385" Offset="0.982"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="Background" Value="Transparent" />
+                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="Transparent" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="toolBarToFrontButtonStyle2" TargetType="{x:Type Button}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Height" Value="20" />
+        <Setter Property="Width" Value="Auto" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.ColumnSpan="2" x:Name="mainBorder" BorderThickness="1" CornerRadius="5" Background="Transparent" BorderBrush="Transparent" />
+                        <Path Grid.Column="0" x:Name="icon" Stretch="Fill" Data="M41.806999,23.288999L50.464998,23.288999 50.464998,46.435 27.322001,46.435 27.322001,38.073001 41.806999,38.073001z M11.198,7.4639994L39.120001,7.4639994 39.120001,35.386001 11.198,35.386001z M0,0L23.143999,0 23.143999,4.7759998 8.5120003,4.7759998 8.5120003,23.142999 0,23.142999z" 
+                              HorizontalAlignment="Center" Height="12" VerticalAlignment="Center" Width="14" Effect="{DynamicResource dark-90}">
+                            <Path.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="White"/>
+                                    <GradientStop Color="#FFC5D7FD" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Path.Fill>
+                        </Path>
+                        <TextBlock Grid.Column="1" Text="Bring to Front " Foreground="White" Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="White" />
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF85A5E5"/>
+                                        <GradientStop Color="#FF5585E5" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="#7FE9EFFF" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="White" />
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF2E4E95"/>
+                                        <GradientStop Color="#3324498F" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="BorderBrush">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF163C8E" Offset="0"/>
+                                        <GradientStop Color="#FF32549C" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="icon" Property="Fill">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF31539B"/>
+                                        <GradientStop Color="#FF254385" Offset="0.982"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="Background" Value="Transparent" />
+                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="Transparent" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="toolBarToBackButtonStyle2" TargetType="{x:Type Button}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Height" Value="20" />
+        <Setter Property="Width" Value="Auto" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.ColumnSpan="2" x:Name="mainBorder" BorderThickness="1" CornerRadius="5" Background="Transparent" BorderBrush="Transparent" />
+                        <Path Grid.Column="0" x:Name="icon" Stretch="Fill" Data="M33.605999,32.759998L58.428999,32.759998 58.428999,57.580997 33.605999,57.580997z M27.359,10.806999L43.906999,10.806999 43.906999,30.056999 30.902999,30.056999 30.902999,44.413999 10.300999,44.413999 10.300999,27.356998 27.359,27.356998z M0,0L24.484999,0 24.484999,24.486999 0,24.486999z" 
+                              HorizontalAlignment="Center" Height="12" VerticalAlignment="Center" Width="14" Effect="{DynamicResource dark-90}">
+                            <Path.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="White"/>
+                                    <GradientStop Color="#FFC5D7FD" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Path.Fill>
+                        </Path>
+                        <TextBlock Grid.Column="1" Text="Send To Back " Foreground="White" Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="White" />
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF85A5E5"/>
+                                        <GradientStop Color="#FF5585E5" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="#7FE9EFFF" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="White" />
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF2E4E95"/>
+                                        <GradientStop Color="#3324498F" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="BorderBrush">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF163C8E" Offset="0"/>
+                                        <GradientStop Color="#FF32549C" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="icon" Property="Fill">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF31539B"/>
+                                        <GradientStop Color="#FF254385" Offset="0.982"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="Background" Value="Transparent" />
+                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="Transparent" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="toolBarDeleteButtonStyle2" TargetType="{x:Type Button}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Height" Value="20" />
+        <Setter Property="Width" Value="Auto" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}" >
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="20"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.ColumnSpan="2" x:Name="mainBorder" BorderThickness="1" CornerRadius="5" Background="Transparent" BorderBrush="Transparent" />
+                        <Path Grid.Column="0" x:Name="icon" Stretch="Fill" Data="M51.527958,0L64,12.4741 44.47221,32.001027 64,51.52871 51.528,64.000001 32.000016,44.472668 12.471823,64.000001 0.0010004044,51.528802 19.528015,32.001088 0,12.473726 12.472,0.0010004044 31.999884,19.528773z"  
+                              HorizontalAlignment="Center" Height="12" VerticalAlignment="Center" Width="14" Effect="{DynamicResource dark-90}">
+                            <Path.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="White"/>
+                                    <GradientStop Color="#FFC5D7FD" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Path.Fill>
+                        </Path>
+                        <TextBlock Grid.Column="1" Text="Delete " Foreground="White" Background="Transparent" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="White" />
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF85A5E5"/>
+                                        <GradientStop Color="#FF5585E5" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="#7FE9EFFF" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="White" />
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF2E4E95"/>
+                                        <GradientStop Color="#3324498F" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="BorderBrush">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF163C8E" Offset="0"/>
+                                        <GradientStop Color="#FF32549C" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="icon" Property="Fill">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF31539B"/>
+                                        <GradientStop Color="#FF254385" Offset="0.982"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="Background" Value="Transparent" />
+                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="Transparent" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+    <Style x:Key="toolBarAddButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Height" Value="32" />
+        <Setter Property="Width" Value="32" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}" >
+                    <!--<Viewbox>-->
+                    <Grid>
+                        <Border x:Name="mainBorder" BorderThickness="1" CornerRadius="5" Background="Transparent" BorderBrush="Transparent" />
+
+                        <Path x:Name="icon" Stretch="Fill" Data="M19.833,0L32.501,0 32.501,19.833999 52.334,19.833999 52.334,32.500999 32.501,32.500999 32.501,52.333 19.833,52.333 19.833,32.500999 0,32.500999 0,19.833999 19.833,19.833999z"   HorizontalAlignment="Center" Height="18" VerticalAlignment="Center" Width="18" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                            <Path.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="White"/>
+                                    <GradientStop Color="#FFC5D7FD" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Path.Fill>
+                        </Path>
+                    </Grid>
+                    <!--</Viewbox>-->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="White" />
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF85A5E5"/>
+                                        <GradientStop Color="#FF5585E5" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="#7FE9EFFF" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="White" />
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF2E4E95"/>
+                                        <GradientStop Color="#3324498F" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="BorderBrush">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF163C8E" Offset="0"/>
+                                        <GradientStop Color="#FF32549C" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="icon" Property="Fill">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF31539B"/>
+                                        <GradientStop Color="#FF254385" Offset="0.982"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="Background" Value="Transparent" />
+                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="Transparent" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="toolBarEditButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Height" Value="32" />
+        <Setter Property="Width" Value="32" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}" >
+                    <!--<Viewbox>-->
+                    <Grid>
+                        <Border x:Name="mainBorder" BorderThickness="1" CornerRadius="5" Background="Transparent" BorderBrush="Transparent" />
+
+                        <Path x:Name="icon" Stretch="Uniform" HorizontalAlignment="Center" Height="18" VerticalAlignment="Center" Width="18" Data="M0,51.811003L12.293,58.86939 1.1757193,63.999998z M18.11735,12.648L38.103998,24.119321 22.75799,50.853998 21.614605,47.435965 15.750179,46.830458 14.753991,43.156118 9.0027626,42.957916 7.3934724,38.929478 2.7749995,39.382679z M27.724333,0.00095844269C28.275374,-0.012296677,28.813618,0.11171532,29.298115,0.38925457L43.451544,8.5127215C45.170199,9.5000639,45.55559,12.057143,44.314722,14.221125L42.627268,17.164001 22.244999,5.4634366 23.932455,2.5205812C24.82433,0.96517754,26.316117,0.034832954,27.724333,0.00095844269z" 
+                                   Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                            <Path.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="White"/>
+                                    <GradientStop Color="#FFC5D7FD" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Path.Fill>
+                        </Path>
+                    </Grid>
+                    <!--</Viewbox>-->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="White" />
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF85A5E5"/>
+                                        <GradientStop Color="#FF5585E5" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="#7FE9EFFF" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="White" />
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF2E4E95"/>
+                                        <GradientStop Color="#3324498F" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="BorderBrush">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF163C8E" Offset="0"/>
+                                        <GradientStop Color="#FF32549C" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="icon" Property="Fill">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF31539B"/>
+                                        <GradientStop Color="#FF254385" Offset="0.982"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="Background" Value="Transparent" />
+                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="Transparent" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="toolBarDeleteButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Height" Value="32" />
+        <Setter Property="Width" Value="32" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}" >
+                    <!--<Viewbox>-->
+                    <Grid>
+                        <Border x:Name="mainBorder" BorderThickness="1" CornerRadius="5" Background="Transparent" BorderBrush="Transparent" />
+
+                        <Path x:Name="icon" Stretch="Fill" HorizontalAlignment="Center" Height="18" VerticalAlignment="Center" Width="18" Data="M19.833,0L32.501,0 32.501,19.833999 52.334,19.833999 52.334,32.500999 32.501,32.500999 32.501,52.333 19.833,52.333 19.833,32.500999 0,32.500999 0,19.833999 19.833,19.833999z"  Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                            <Path.RenderTransform>
+                                <TransformGroup>
+                                    <TransformGroup.Children>
+                                        <RotateTransform Angle="45" />
+                                        <ScaleTransform ScaleX="1" ScaleY="1" />
+                                    </TransformGroup.Children>
+                                </TransformGroup>
+                            </Path.RenderTransform>
+                            <Path.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="White"/>
+                                    <GradientStop Color="#FFC5D7FD" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Path.Fill>
+                        </Path>
+                    </Grid>
+                    <!--</Viewbox>-->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="White" />
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF85A5E5"/>
+                                        <GradientStop Color="#FF5585E5" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="#7FE9EFFF" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="White" />
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF2E4E95"/>
+                                        <GradientStop Color="#3324498F" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="BorderBrush">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF163C8E" Offset="0"/>
+                                        <GradientStop Color="#FF32549C" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="icon" Property="Fill">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF31539B"/>
+                                        <GradientStop Color="#FF254385" Offset="0.982"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="Background" Value="Transparent" />
+                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="Transparent" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="toolBarAddRangeButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Height" Value="32" />
+        <Setter Property="Width" Value="32" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}" >
+                    <!--<Viewbox>-->
+                    <Grid>
+                        <Border x:Name="mainBorder" BorderThickness="1" CornerRadius="5" Background="Transparent" BorderBrush="Transparent" />
+
+                        <Path x:Name="icon" Stretch="Fill" HorizontalAlignment="Center" Height="18" VerticalAlignment="Center" Width="18" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+
+                            <Path.Fill>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="White"/>
+                                    <GradientStop Color="#FFC5D7FD" Offset="1"/>
+                                </LinearGradientBrush>
+                            </Path.Fill>
+                        </Path>
+                    </Grid>
+                    <!--</Viewbox>-->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="White" />
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF85A5E5"/>
+                                        <GradientStop Color="#FF5585E5" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="#7FE9EFFF" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="icon" Property="Fill" Value="White" />
+                            <Setter TargetName="mainBorder" Property="Background">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF2E4E95"/>
+                                        <GradientStop Color="#3324498F" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="BorderBrush">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF163C8E" Offset="0"/>
+                                        <GradientStop Color="#FF32549C" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="icon" Property="Fill">
+                                <Setter.Value>
+                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                        <GradientStop Color="#FF31539B"/>
+                                        <GradientStop Color="#FF254385" Offset="0.982"/>
+                                    </LinearGradientBrush>
+                                </Setter.Value>
+                            </Setter>
+                            <Setter TargetName="mainBorder" Property="Background" Value="Transparent" />
+                            <Setter TargetName="mainBorder" Property="BorderBrush" Value="Transparent" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="IpadButton" TargetType="{x:Type ToggleButton}">
+        <Setter Property="Background" Value="#FFD4D4D4" />
+        <Setter Property="BorderBrush" Value="#FFA0A0A0" />
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="FontFamily" Value="{DynamicResource Application_FontFamily}" />
+        <Setter Property="FontSize" Value="{DynamicResource Default_FontSize}" />
+        <Setter Property="Foreground" Value="{DynamicResource TextBox_Foreground}" />
+
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Viewbox Stretch="Uniform">
+                        <Canvas Name="Layer_1" Width="20" Height="20" Canvas.Left="10" Canvas.Top="0">
+                            <Ellipse  Canvas.Left="0" Width="20" Height="20" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="0.5"/>
+                            <Ellipse  Canvas.Left="15" Width="20" Height="20" Fill="{TemplateBinding Background}" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="0.5"/>
+                            <Border Canvas.Left="10" Width="15" Height="20" Name="rect416927" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="0,0.5,0,0.5"/>
+                            <Ellipse x:Name="ellipse"  Canvas.Left="0" Width="20" Height="20" Fill="White" Stroke="{TemplateBinding BorderBrush}" StrokeThickness="0.3">
+                                <Ellipse.RenderTransform>
+                                    <TranslateTransform X="0" Y="0" />
+                                </Ellipse.RenderTransform>
+                                <Ellipse.BitmapEffect>
+                                    <DropShadowBitmapEffect Softness="0.1" ShadowDepth="0.7" Direction="270" Color="#BBBBBB"/>
+                                </Ellipse.BitmapEffect>
+                            </Ellipse>
+                        </Canvas>
+                    </Viewbox>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True" >
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+
+                                        <ColorAnimation Storyboard.TargetProperty="Background.Color" To="#FF7FF37A" Duration="0:0:0.2" />
+                                        <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" To="#FF30FE39" Duration="0:0:0.2" />
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Ellipse.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="ellipse">
+                                            <SplineDoubleKeyFrame KeyTime="0" Value="0"/>
+                                            <SplineDoubleKeyFrame KeyTime="0:0:0.4" Value="15" KeySpline="0, 1, 0.6, 1"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetProperty="Background.Color" To="#FAFAFB" Duration="0:0:0.2" />
+                                        <!--To="#FAFAFB"-->
+                                        <ColorAnimation Storyboard.TargetProperty="BorderBrush.Color" To="#EAEAEB" Duration="0:0:0.2"/>
+                                        <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(Ellipse.RenderTransform).(TranslateTransform.X)" Storyboard.TargetName="ellipse">
+                                            <SplineDoubleKeyFrame KeyTime="0" Value="15"/>
+                                            <SplineDoubleKeyFrame KeyTime="0:0:0.3" Value="0" KeySpline="0, 0.5, 0.5, 1"/>
+                                        </DoubleAnimationUsingKeyFrames>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsEnabled" Value="False" />
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" Value="Transparent" />
+            </MultiTrigger>
+        </Style.Triggers>
+    </Style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</ResourceDictionary>

@@ -1,0 +1,172 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:NS.Enterprise.WidgetFactory.UI.Widgets.Telemetry.Common.Grids"
+                    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                    xmlns:ig="http://schemas.infragistics.com/xaml"
+                     xmlns:AF="http://appframework.com"
+                    xmlns:logic="clr-namespace:NS.Enterprise.WidgetFactory.UI.Widgets.VoiceRecording.Logic"
+                    xmlns:WF="clr-namespace:NS.Enterprise.WidgetFactory">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../../Common/CommonStyles.xaml"/>
+        <ResourceDictionary Source="../../../../Common/Controls/CustomDataGridView.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+    <local:ModbusConfigConverter x:Key="ModbusConfigConverter"/>
+    
+
+    <Style x:Key="{x:Type local:TagsDataGrid}" TargetType="{x:Type local:TagsDataGrid}">
+
+        <Setter Property="Template">
+            <Setter.Value>
+
+                <ControlTemplate TargetType="{x:Type local:TagsDataGrid}">
+                    <ControlTemplate.Resources>
+                      
+                    </ControlTemplate.Resources>
+                    <Border BorderBrush="#FF0D3883" BorderThickness="0"  Background="#FF133E8B" Margin="10,3,10,0">
+                        <Border.Effect>
+                            <DropShadowEffect Color="#FF0D3883" ShadowDepth="0"/>
+                        </Border.Effect>
+                        <Border BorderThickness="1" BorderBrush="#FF1B3F95" >
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <!--<RowDefinition Height="32" />-->
+                                    <RowDefinition Height="50" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Border Grid.Row="0" Grid.ColumnSpan="3">
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FF6A8ED8" Offset="0"/>
+                                            <GradientStop Color="#FF3365C2" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+                                <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0">
+                                    <Button x:Name="AddTag" Margin="5,0,0,0" Content="Test" Style="{StaticResource toolBarAddButtonStyle}" Command="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=AddTagCommand}" />
+                                    <Button x:Name="DeleteTag" Margin="5,0,0,0" Content="Test" Style="{StaticResource toolBarDeleteButtonStyle}" Command="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DeleteTagCommand}" CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedQuery}" />
+                                    <Button x:Name="EditTag" Margin="5,0,0,0" Content="Test" Style="{StaticResource toolBarEditButtonStyle}"  Command="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=EditTagCommand}" CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedQuery}"/>
+                                    <Button x:Name="AddRangeTag" Margin="5,0,0,0" Content="Test" Style="{StaticResource toolBarAddRangeButtonStyle}" Command="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=AddRangeTagsCommand}" />
+                                    
+                                    <ComboBox  x:Name="CsvBox" Margin="5,0,0,0" Width="32" Height="32">
+                                        <ComboBox.Template>
+                                            <ControlTemplate  TargetType="{x:Type ComboBox}" >
+                                                <Grid>
+                                                    <ToggleButton Name="ToggleButton" Style="{StaticResource toolBarImportExportButtonStyle}" Focusable="False" 
+                                                                  Cursor="Hand"  ClickMode="Press" IsChecked="{Binding Path=IsDropDownOpen,Mode=TwoWay,RelativeSource={RelativeSource TemplatedParent}}" HorizontalAlignment="Left"/>
+
+                                                    <Popup x:Name="Popup" Placement="Bottom" Margin="0,2,0,0" IsOpen="{TemplateBinding IsDropDownOpen}" AllowsTransparency="True" Focusable="False" PopupAnimation="Slide">
+                                                        <Border x:Name="DropDownBorder" BorderThickness="1" Padding="1" Margin="0,1,0,0" BorderBrush="#FFC4C4C4" Background="White">
+                                                            <Grid Background="White">
+                                                                <Grid.RowDefinitions>
+                                                                    <RowDefinition Height="25" />
+                                                                    <RowDefinition Height="25" />
+                                                                </Grid.RowDefinitions>
+                                                                <Button Grid.Row="0" Content="Import" Template="{StaticResource ResourceKey=transparentButton}" Command="{Binding RelativeSource={RelativeSource  FindAncestor, AncestorType=local:TagsDataGrid, AncestorLevel=1}, Path=OnImportCommand}" />
+                                                                <Button Grid.Row="1" Content="Export" Template="{StaticResource ResourceKey=transparentButton}" Command="{Binding RelativeSource={RelativeSource  FindAncestor, AncestorType=local:TagsDataGrid, AncestorLevel=1}, Path=OnExportCommand}"  />
+                                                                </Grid>
+                                                        </Border>
+                                                    </Popup>
+
+                                                </Grid>
+                                            </ControlTemplate>
+                                        </ComboBox.Template>
+                                    </ComboBox>
+                                    <!--<Button x:Name="Import" Margin="5,0,0,0" Content="Test" Style="{StaticResource toolBarAddRangeButtonStyle}" Command="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=OnImportCommand}" />
+                                    <Button x:Name="Export" Margin="5,0,0,0" Content="Test" Style="{StaticResource toolBarAddRangeButtonStyle}" Command="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=OnExportCommand}" />-->
+                                </StackPanel>
+                                <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" x:Name="mainGrid" HorizontalAlignment="Left" VerticalAlignment="Top" CellStyle="{StaticResource GridCellStyle}" 
+		                                  AlternationCount="2" AutoGenerateColumns="False" MinRowHeight="26" Style="{StaticResource DataGridStyle}" ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}" RowStyle="{StaticResource GridRowStyle}"
+		                                  ItemsSource="{Binding Source={x:Static WF:EnterpriseFactory.Instance}, Path=ScadaQueries, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedQuery, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Single"
+                                          logic:DataGridRowDoubleClickHelper.DataGridRowDoubleClickCommand="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=EditTagCommand}" CanUserAddRows="False">
+                                    <DataGrid.RowHeaderTemplate>
+                                        <DataTemplate>
+                                            <ToggleButton x:Name="RowHeaderToggleButton"  Cursor="Hand" />
+                                        </DataTemplate>
+                                    </DataGrid.RowHeaderTemplate>
+                                    <DataGrid.Columns>
+                                        <DataGridTextColumn  Width="40" MinWidth="50" Binding="{Binding ID}" IsReadOnly="True"   Header="ID"/>
+                                        <DataGridTextColumn Width="120" MinWidth="50"  Binding="{Binding Name}" IsReadOnly="True"   Header="Name" />
+                                        <DataGridTextColumn Width="120" MinWidth="50" Binding="{Binding ModbusGuid, Converter={StaticResource ModbusConfigConverter}}" IsReadOnly="True"  Header="PLC" />
+                                        <DataGridTextColumn Width="50" MinWidth="50" Binding="{Binding RegisterIndex}" IsReadOnly="True"  Header="#Reg" />
+                                        <DataGridTextColumn Width="80" MinWidth="50" Binding="{Binding ModbusType}" IsReadOnly="True"  Header="Type" />
+                                        <DataGridTextColumn Width="120" MinWidth="50" Binding="{Binding ActiveTable}" IsReadOnly="True"  Header="ActiveTable" />
+                                        <DataGridTextColumn Width="70" MinWidth="50" Binding="{Binding UpdateInterval}" IsReadOnly="True"  Header="Interval" />
+                                        <!--<DataGridTextColumn Width="80" MinWidth="50" Binding="{Binding Status}" IsReadOnly="True" Header="Status" />-->
+                                        <DataGridTemplateColumn Header="State" >
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Path x:Name="State" Stretch="Fill" Data="M136.264,1.3E-05C171.176,-0.014697,206.123,12.0088,232.825,36.1147L430.955,214.979 621.741,42.8592C675.011,-5.3526 761.527,-5.22901 814.664,42.6238 867.667,90.5943 867.801,168.697 814.53,216.785L623.744,389.023 803.448,551.255C856.719,599.349 856.587,677.328 803.314,725.299 750.311,773.27 663.93,773.393 610.66,725.299L430.955,563.067 243.907,731.932C190.503,780.143 104.254,779.902 51.1172,731.932 -2.01967,683.961 -2.28695,606.099 51.1172,558.005L238.165,389.023 39.9028,210.035C-13.3677,161.947 -13.2341,83.9617 39.9028,36.1147 66.4712,12.0677 101.351,0.014729 136.264,1.3E-05z"   HorizontalAlignment="Center" Height="18" VerticalAlignment="Center" Width="18" Margin="0,0,0,0" RenderTransformOrigin="0.5,0.5">
+                                                        <Path.Fill>
+                                                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                                <GradientStop Color="#FFFDD0CB"/>
+                                                                <GradientStop Color="#FFFF3723" Offset="1"/>
+                                                            </LinearGradientBrush>
+                                                        </Path.Fill>
+                                                    </Path>                                                    
+                                                    <DataTemplate.Triggers>
+                                                        <DataTrigger Binding="{Binding Path=Status}" Value="true">
+                                                            <Setter TargetName="State" Property="Fill">
+                                                                <Setter.Value>                                                                    
+                                                                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                                                        <GradientStop Color="White"/>
+                                                                        <GradientStop Color="#FF11B820" Offset="1"/>
+                                                                    </LinearGradientBrush>                                                                    
+                                                                </Setter.Value>
+                                                            </Setter>
+                                                            <Setter TargetName="State" Property="Data" Value="M455.05548082653,0L516.997009146842,62.584720969171 185.725540030631,318.996006369562 0,129.061100363702 71.4151533729164,74.9226192235656 195.006866324577,201.566776633234z"/>
+                                                        </DataTrigger>
+                                                    </DataTemplate.Triggers>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTextColumn Width="80" MinWidth="50" Binding="{Binding LastError}" IsReadOnly="True" Header="Error" />
+                                        <DataGridTextColumn Width="80" MinWidth="50"  Binding="{Binding Value}" IsReadOnly="True" Header="Value" />
+                                        <DataGridTextColumn Width="*" MinWidth="50"  Binding="{Binding RawValue}" IsReadOnly="True" Header="Raw Value" />
+                                        <DataGridTemplateColumn Header="Enabled" >
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <ToggleButton Style="{StaticResource IpadButton}" HorizontalAlignment="Center" IsChecked="{Binding IsEnabled}">
+                                                        <i:Interaction.Triggers>
+                                                            <i:EventTrigger EventName="Click">
+                                                                <AF:EventToCommand Command="local:TagsDataGrid.EnableTag"  CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedQuery}"/>
+                                                             </i:EventTrigger>
+                                                        </i:Interaction.Triggers>
+                                                    </ToggleButton>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                        <DataGridTemplateColumn Header="Thresholds" >
+                                            <DataGridTemplateColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <Button Content="Thresholds"  HorizontalAlignment="Center">
+                                                        <i:Interaction.Triggers>
+                                                            <i:EventTrigger EventName="Click">
+                                                                <AF:EventToCommand Command="local:TagsDataGrid.ShowTresholds" />
+                                                            </i:EventTrigger>
+                                                        </i:Interaction.Triggers>
+                                                    </Button>
+                                                </DataTemplate>
+                                            </DataGridTemplateColumn.CellTemplate>
+                                        </DataGridTemplateColumn>
+                                    </DataGrid.Columns>
+                                </DataGrid>
+                            </Grid>
+                        </Border>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                      
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+</ResourceDictionary>

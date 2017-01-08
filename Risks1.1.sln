@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Risks1.1", "WpfApplication1\Risks1.1.csproj", "{A2261600-632F-43CC-B478-94F2A1D5B899}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A2261600-632F-43CC-B478-94F2A1D5B899}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A2261600-632F-43CC-B478-94F2A1D5B899}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A2261600-632F-43CC-B478-94F2A1D5B899}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A2261600-632F-43CC-B478-94F2A1D5B899}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
