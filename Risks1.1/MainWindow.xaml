@@ -17,7 +17,7 @@
             <Border.Effect>
                 <DropShadowEffect Color="#FF0D3883" ShadowDepth="0"/>
             </Border.Effect>
-            <Border BorderThickness="1" BorderBrush="#FF1B3F95" >
+            <!--<Border BorderThickness="1" BorderBrush="#FF1B3F95" >-->
                 <contols:OptionsControl x:Name="OptControl"/>
                 <!--<Grid>
                         <Grid.RowDefinitions>
@@ -59,7 +59,7 @@
                         </DataGrid>
                     </Grid>-->
                 
-            </Border>
+            <!--</Border>-->
         </Border>
         
 

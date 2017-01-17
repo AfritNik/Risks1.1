@@ -14,7 +14,7 @@
                     <Grid Background="White">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
-                            <RowDefinition Height="50" />
+                            <!--<RowDefinition Height="50" />-->
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="200" MinWidth="150" MaxWidth="350" />
@@ -93,9 +93,9 @@
                         <ContentPresenter Grid.Column="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
                                 Content="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedMenuItem.Content, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
 
-                        <Border Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Top" BorderThickness="0,1,0,0" BorderBrush="#FFC6D7FA" />
+                        <!--<Border Grid.Row="1" Grid.ColumnSpan="2" VerticalAlignment="Top" BorderThickness="0,1,0,0" BorderBrush="#FFC6D7FA" />
 
-                        <Button x:Name="closeBtn" Content="Close" Grid.Row="1" Grid.ColumnSpan="2" Height="28" MinWidth="85" HorizontalAlignment="Right" Cursor="Hand"  Margin="0,0,11,0" Command="local:OptionsControl.CloseCommand"/>
+                        <Button x:Name="closeBtn" Content="Close" Grid.Row="1" Grid.ColumnSpan="2" Height="28" MinWidth="85" HorizontalAlignment="Right" Cursor="Hand"  Margin="0,0,11,0" Command="local:OptionsControl.CloseCommand"/>-->
 
                     </Grid>
 

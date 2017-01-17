@@ -29,6 +29,10 @@ namespace WpfApplication1
             Rates = new ObservableCollection<int>();
             for (int i = 1; i <= 10; i++)
                 Rates.Add(i);
+            ExtRates = new ObservableCollection<String>();
+            ExtRates.Add("Internal");
+            ExtRates.Add("External");
+            ExtRates.Add("Global");
         }
         #region Properties
         public static DependencyProperty SelectedExpertProperty = DependencyProperty.Register("SelectedExpert", typeof(Expert), typeof(AssessmentsGrid), new PropertyMetadata(SelectedExpertChanged));
@@ -84,6 +88,12 @@ namespace WpfApplication1
         {
             get { return (ObservableCollection<int>)GetValue(RatesProperty); }
             set { SetValue(RatesProperty, value); }
+        }
+        public static DependencyProperty ExtRatesProperty = DependencyProperty.Register("ExtRates", typeof(ObservableCollection<string>), typeof(AssessmentsGrid));
+        public ObservableCollection<string> ExtRates
+        {
+            get { return (ObservableCollection<string>)GetValue(ExtRatesProperty); }
+            set { SetValue(ExtRatesProperty, value); }
         }
         #endregion
         #region Commands
@@ -276,6 +286,29 @@ namespace WpfApplication1
                 return ((Risk)value).ID;
             }
             else return 0;
+        }
+    }
+    public class ExternalRateConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (value is int)
+            {
+                if ((int)value == 1) return "Internal";
+                else if ((int)value == 2) return "External";
+                else return "Global";
+            }
+            else return null;
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (value is string)
+            {
+                if ((string)value == "Internal") return 1;
+                else if ((string)value == "External") return 2;
+                else return 3;
+            }
+            else return 3;
         }
     }
     public class CollectionFilterConvert : IMultiValueConverter

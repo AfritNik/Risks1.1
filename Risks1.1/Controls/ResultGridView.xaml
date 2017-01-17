@@ -2,7 +2,10 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:WpfApplication1"
                     xmlns:common="clr-namespace:WpfApplication1.Common"
-                    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity">
+                    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                    xmlns:chart="clr-namespace:De.TorstenMandelkow.MetroChart;assembly=De.TorstenMandelkow.MetroChart"
+                    xmlns:DV="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"
+                    xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Common/CommonStyles.xaml"/>
@@ -17,8 +20,8 @@
             <Setter.Value>
 
                 <ControlTemplate TargetType="{x:Type local:ResultGrid}">
-                    
-                    <Border BorderBrush="#FF0D3883" BorderThickness="0"  Background="#FF133E8B" Margin="10,3,10,0">
+
+                    <Border BorderBrush="#FF0D3883" BorderThickness="0"  Background="#FF133E8B" >
                         <Border.Effect>
                             <DropShadowEffect Color="#FF0D3883" ShadowDepth="0"/>
                         </Border.Effect>
@@ -45,35 +48,65 @@
                                 </Border>
                                 <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,5,0">
                                     <Button x:Name="AddTag" Margin="5,0,0,0" Content="Test" Style="{StaticResource toolBarAddButtonStyle}" Command="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=UpdateCommand}" />
-                                    <!--<Button x:Name="DeleteTag" Margin="5,0,0,0" Content="Test" Style="{StaticResource toolBarDeleteButtonStyle}" Command="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DeleteAssessmentCommand}" CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedAssessment}" />
-                                    <Button x:Name="SaveAll" Margin="5,0,0,0" Content="SaveAll" Style="{StaticResource toolBarSaveToFileButtonStyle}"  Command="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SaveAllCommand}" />-->
-                                    <!--<ComboBox x:Name="Expert" Margin="5,0,0,0" ItemsSource="{Binding Source={x:Static common:EnterpriseFactory.Instance}, Path=Experts, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedExpert, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />-->
-                                    <!--<Button x:Name="AddRangeTag" Margin="5,0,0,0" Content="Test" Style="{StaticResource toolBarAddRangeButtonStyle}" Command="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=AddRangeTagsCommand}" />-->
+
                                 </StackPanel>
-                                <DataGrid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" x:Name="mainGrid" HorizontalAlignment="Left" VerticalAlignment="Top" CellStyle="{StaticResource GridCellStyle}" 
+                                <ScrollViewer Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3"  VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled" >
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <DataGrid Grid.Row="0"  x:Name="mainGrid" HorizontalAlignment="Left" VerticalAlignment="Top" CellStyle="{StaticResource GridCellStyle}" 
 		                                  AlternationCount="2" AutoGenerateColumns="False" MinRowHeight="26" Style="{StaticResource DataGridStyle}" ColumnHeaderStyle="{StaticResource ColumnHeaderStyle}" RowStyle="{StaticResource GridRowStyle}"
 		                                  ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=filteredCollection, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedResult, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectionMode="Single"
                                           CanUserAddRows="False">
-                                    <DataGrid.RowHeaderTemplate>
-                                        <DataTemplate>
-                                            <ToggleButton x:Name="RowHeaderToggleButton"  Cursor="Hand" />
-                                        </DataTemplate>
-                                    </DataGrid.RowHeaderTemplate>
-                                    <DataGrid.Columns>
-                                        <DataGridTextColumn  Width="40*" MinWidth="50" Binding="{Binding ID, Converter={StaticResource RiskIDToNameConverter}}" IsReadOnly="True"   Header="Risk"/>
+                                            <DataGrid.RowHeaderTemplate>
+                                                <DataTemplate>
+                                                    <ToggleButton x:Name="RowHeaderToggleButton"  Cursor="Hand" />
+                                                </DataTemplate>
+                                            </DataGrid.RowHeaderTemplate>
+                                            <DataGrid.Columns>
+                                                <DataGridTextColumn  Width="40*" MinWidth="50" Binding="{Binding ID, Converter={StaticResource RiskIDToNameConverter}}" IsReadOnly="True"   Header="Risk"/>
 
-                                        <DataGridTextColumn Width="120*" MinWidth="50"  Binding="{Binding Importance}" IsReadOnly="False"   Header="Importance" />
-                                        <DataGridTextColumn Width="120*" MinWidth="50"  Binding="{Binding InfluenceProb}" IsReadOnly="False"   Header="InfluenceProb" />
-                                        <DataGridTextColumn Width="120*" MinWidth="50"  Binding="{Binding ExternalRate}" IsReadOnly="False"   Header="ExternalRate" />
-                                        <DataGridTextColumn Width="120*" MinWidth="50"  Binding="{Binding ProtectionRate}" IsReadOnly="False"   Header="ProtectionRate" />
-                                        
-                                    </DataGrid.Columns>
-                                </DataGrid>
+                                                <DataGridTextColumn Width="120*" MinWidth="50"  Binding="{Binding Importance}" IsReadOnly="False"   Header="Importance" />
+                                                <DataGridTextColumn Width="120*" MinWidth="50"  Binding="{Binding InfluenceProb}" IsReadOnly="False"   Header="InfluenceProb" />
+                                                <DataGridTextColumn Width="120*" MinWidth="50"  Binding="{Binding ExternalRate}" IsReadOnly="False"   Header="ExternalRate" />
+                                                <DataGridTextColumn Width="120*" MinWidth="50"  Binding="{Binding ProtectionRate}" IsReadOnly="False"   Header="ProtectionRate" />
+
+                                            </DataGrid.Columns>
+                                        </DataGrid>
+                                        <chart:ClusteredColumnChart                               
+                Style="{StaticResource ChartStyleVariableSize}"
+                ChartTitle="Column Chart with dynamic series"
+                ChartSubTitle="Chart with a dynamic width and height"                  
+                Palette="{Binding Path=SelectedPalette.Value}"
+                FontSize="{Binding Path=SelectedFontSize}"
+                IsRowColumnSwitched="{Binding Path=IsRowColumnSwitched}"
+                ChartTitleVisibility="{Binding Path=IsTitleVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                ChartLegendVisibility="{Binding Path=IsLegendVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
+                ToolTipFormat="{Binding Path=ToolTipFormat}"
+                Foreground="{Binding Path=Foreground}" 
+                Background="{Binding Path=Background}"                 
+                SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
+                SelectedBrush="{Binding Path=SelectedBrush, Converter={StaticResource StringToBrushConverter}}" 
+                SeriesSource="{Binding Path=Series}">
+                                            <chart:ClusteredColumnChart.SeriesTemplate>
+                                                <DataTemplate>
+                                                    <chart:ChartSeries
+			                SeriesTitle="{Binding Path=SeriesDisplayName}"
+                            DisplayMember="Category"
+                            ValueMember="Number"
+                            ItemsSource="{Binding Path=Items}" />
+                                                </DataTemplate>
+                                            </chart:ClusteredColumnChart.SeriesTemplate>
+                                        </chart:ClusteredColumnChart>
+                                    </Grid>
+                                </ScrollViewer>
                             </Grid>
                         </Border>
                     </Border>
                     <ControlTemplate.Triggers>
-                      
+
 
                     </ControlTemplate.Triggers>
                 </ControlTemplate>

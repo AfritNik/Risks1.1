@@ -35,6 +35,7 @@ namespace WpfApplication1
 
         private void FilterCollection()
         {
+            filteredCollection.Clear();
             foreach (Risk rsk in EnterpriseFactory.Instance.Risks)
             {
                 int count = 0;
@@ -47,10 +48,10 @@ namespace WpfApplication1
                     if (obj.RiskID==rsk.ID)
                     {
                         count++;
-                        Importance += obj.InfluenceProb * obj.Danger;
+                        Importance += obj.Probability * obj.Danger;
                         ExtRate += obj.ExternalRate;
                         ProtRate += obj.ProtectionDegree;
-                        ProbabilityAverage += obj.Probability;
+                        ProbabilityAverage += obj.InfluenceProb;
                     }
                 }
                 filteredCollection.Add(new Result(Helper.FindFreeNumber<Result>(filteredCollection), Importance / count, ExtRate / count, ProtRate / count, ProbabilityAverage / count));

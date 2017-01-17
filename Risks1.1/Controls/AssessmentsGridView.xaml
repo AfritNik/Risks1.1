@@ -12,6 +12,7 @@
     <local:ExpertIDConverter x:Key="ExpertIDConverter"/>
     <local:RiskIDConverter x:Key="RiskIDConverter"/>
     <local:CollectionFilterConvert x:Key="CollectionFilterConvert"/>
+    <local:ExternalRateConverter x:Key="ExternalRateConverter"/>
 
     <Style x:Key="{x:Type local:AssessmentsGrid}" TargetType="{x:Type local:AssessmentsGrid}">
 
@@ -20,7 +21,7 @@
 
                 <ControlTemplate TargetType="{x:Type local:AssessmentsGrid}">
                     
-                    <Border BorderBrush="#FF0D3883" BorderThickness="0"  Background="#FF133E8B" Margin="10,3,10,0">
+                    <Border BorderBrush="#FF0D3883" BorderThickness="0"  Background="#FF133E8B" >
                         <Border.Effect>
                             <DropShadowEffect Color="#FF0D3883" ShadowDepth="0"/>
                         </Border.Effect>
@@ -80,7 +81,7 @@
                                         <DataGridTemplateColumn Header="Probability" >
                                             <DataGridTemplateColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Rates, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Probability}"/>
+                                                    <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=local:AssessmentsGrid, AncestorLevel=1}, Path=Rates, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Probability, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                                 </DataTemplate>
                                             </DataGridTemplateColumn.CellTemplate>
                                         </DataGridTemplateColumn>
@@ -88,7 +89,7 @@
                                         <DataGridTemplateColumn Header="InfluenceProb" >
                                             <DataGridTemplateColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Rates, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding InfluenceProb}"/>
+                                                    <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=local:AssessmentsGrid, AncestorLevel=1}, Path=Rates, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding InfluenceProb, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                                 </DataTemplate>
                                             </DataGridTemplateColumn.CellTemplate>
                                         </DataGridTemplateColumn>
@@ -96,7 +97,7 @@
                                         <DataGridTemplateColumn Header="Danger" >
                                             <DataGridTemplateColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Rates, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Danger}"/>
+                                                    <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=local:AssessmentsGrid, AncestorLevel=1}, Path=Rates, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Danger, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                                 </DataTemplate>
                                             </DataGridTemplateColumn.CellTemplate>
                                         </DataGridTemplateColumn>
@@ -104,7 +105,7 @@
                                         <DataGridTemplateColumn Header="ExternalRate" >
                                             <DataGridTemplateColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Rates, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding ExternalRate}"/>
+                                                    <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=local:AssessmentsGrid, AncestorLevel=1}, Path=ExtRates, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding ExternalRate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged, Converter={StaticResource ExternalRateConverter}}"/>
                                                 </DataTemplate>
                                             </DataGridTemplateColumn.CellTemplate>
                                         </DataGridTemplateColumn>
@@ -112,7 +113,7 @@
                                         <DataGridTemplateColumn Header="ProtectionDegree" >
                                             <DataGridTemplateColumn.CellTemplate>
                                                 <DataTemplate>
-                                                    <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Rates, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding ProtectionDegree}"/>
+                                                    <ComboBox ItemsSource="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=local:AssessmentsGrid, AncestorLevel=1}, Path=Rates, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding ProtectionDegree, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                                                 </DataTemplate>
                                             </DataGridTemplateColumn.CellTemplate>
                                         </DataGridTemplateColumn>

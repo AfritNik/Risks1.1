@@ -18,7 +18,7 @@
 
                 <ControlTemplate TargetType="{x:Type local:RisksGrid}">
                     
-                    <Border BorderBrush="#FF0D3883" BorderThickness="0"  Background="#FF133E8B" Margin="10,3,10,0">
+                    <Border BorderBrush="#FF0D3883" BorderThickness="0"  Background="#FF133E8B">
                         <Border.Effect>
                             <DropShadowEffect Color="#FF0D3883" ShadowDepth="0"/>
                         </Border.Effect>
