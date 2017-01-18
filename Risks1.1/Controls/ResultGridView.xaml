@@ -3,13 +3,12 @@
                     xmlns:local="clr-namespace:WpfApplication1"
                     xmlns:common="clr-namespace:WpfApplication1.Common"
                     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-                    xmlns:chart="clr-namespace:De.TorstenMandelkow.MetroChart;assembly=De.TorstenMandelkow.MetroChart"
-                    xmlns:DV="clr-namespace:System.Windows.Controls.DataVisualization;assembly=System.Windows.Controls.DataVisualization.Toolkit"
-                    xmlns:DVC="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit">
+                    xmlns:chart="clr-namespace:De.TorstenMandelkow.MetroChart;assembly=De.TorstenMandelkow.MetroChart">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../Common/CommonStyles.xaml"/>
         <ResourceDictionary Source="../Common/CustomDataGridView.xaml"/>
+        <ResourceDictionary Source="../Common/Charts/Generic.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <local:RiskIDToNameConverter x:Key="RiskIDToNameConverter"/>
@@ -75,28 +74,11 @@
 
                                             </DataGrid.Columns>
                                         </DataGrid>
-                                        <chart:ClusteredColumnChart                               
-                Style="{StaticResource ChartStyleVariableSize}"
-                ChartTitle="Column Chart with dynamic series"
-                ChartSubTitle="Chart with a dynamic width and height"                  
-                Palette="{Binding Path=SelectedPalette.Value}"
-                FontSize="{Binding Path=SelectedFontSize}"
-                IsRowColumnSwitched="{Binding Path=IsRowColumnSwitched}"
-                ChartTitleVisibility="{Binding Path=IsTitleVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
-                ChartLegendVisibility="{Binding Path=IsLegendVisible, Converter={StaticResource BooleanToVisibilityConverter}}"
-                ToolTipFormat="{Binding Path=ToolTipFormat}"
-                Foreground="{Binding Path=Foreground}" 
-                Background="{Binding Path=Background}"                 
-                SelectedItem="{Binding Path=SelectedItem, Mode=TwoWay}"
-                SelectedBrush="{Binding Path=SelectedBrush, Converter={StaticResource StringToBrushConverter}}" 
-                SeriesSource="{Binding Path=Series}">
+                                        <chart:ClusteredColumnChart Grid.Row="1" Style="{StaticResource ChartStyleVariableSize}" ChartTitle="Column Chart with dynamic series"
+                                                                    ChartSubTitle="Chart with a dynamic width and height"    SeriesSource="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Series, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                                             <chart:ClusteredColumnChart.SeriesTemplate>
                                                 <DataTemplate>
-                                                    <chart:ChartSeries
-			                SeriesTitle="{Binding Path=SeriesDisplayName}"
-                            DisplayMember="Category"
-                            ValueMember="Number"
-                            ItemsSource="{Binding Path=Items}" />
+                                                    <chart:ChartSeries   SeriesTitle="{Binding Path=SeriesDisplayName}"  DisplayMember="Category" ValueMember="Number"    ItemsSource="{Binding Path=Items}" />
                                                 </DataTemplate>
                                             </chart:ClusteredColumnChart.SeriesTemplate>
                                         </chart:ClusteredColumnChart>

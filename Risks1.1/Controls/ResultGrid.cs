@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -56,24 +57,15 @@ namespace WpfApplication1
                 }
                 filteredCollection.Add(new Result(Helper.FindFreeNumber<Result>(filteredCollection), Importance / count, ExtRate / count, ProtRate / count, ProbabilityAverage / count));
             }
-            //if (SelectedExpert!=null && SelectedExpert.ID>=0)
-            //{
-            //    filteredCollection = new ObservableCollection<Result>();
-            //    foreach (Result item in EnterpriseFactory.Instance.Results)
-            //    {
-            //        if (item.ExpertID == SelectedExpert.ID)
-            //        {
-            //            filteredCollection.Add(item);
-            //        }
-            //    }
-            //}
-            //else
-            //{
-            //    foreach (Result item in EnterpriseFactory.Instance.Results)
-            //    {
-            //        filteredCollection.Add(item);                    
-            //    }
-            //}
+            Series = new ObservableCollection<SeriesData>();
+            ObservableCollection<SeriesElement> InfluenceProb = new ObservableCollection<SeriesElement>();
+            foreach (Result res in filteredCollection)
+            {
+                Risk rsk = Helper.FindObjById<Risk>(EnterpriseFactory.Instance.Risks, res.ID);
+                if (rsk != null) 
+                    InfluenceProb.Add(new SeriesElement() { Category = rsk.Name, Number = res.InfluenceProb });
+            } 
+            Series.Add(new SeriesData() { SeriesDisplayName = "Risks", Items = InfluenceProb });
             
         }
 
@@ -93,6 +85,12 @@ namespace WpfApplication1
         {
             get { return (ObservableCollection<Result>)GetValue(filteredCollectionProperty); }
             set { SetValue(filteredCollectionProperty, value); }
+        }
+        public static DependencyProperty SeriesProperty = DependencyProperty.Register("Series", typeof(ObservableCollection<SeriesData>), typeof(ResultGrid));
+        public ObservableCollection<SeriesData> Series
+        {
+            get { return (ObservableCollection<SeriesData>)GetValue(SeriesProperty); }
+            set { SetValue(SeriesProperty, value); }
         }
         #endregion
         #region Commands
@@ -160,62 +158,7 @@ namespace WpfApplication1
         }
 
 
-        //private void SaveAllInFile()
-        //{
-        //    XmlDocument xDoc = new XmlDocument();
-
-        //    XmlNode GlobalNode = xDoc.CreateXmlDeclaration("1.0", "utf-8", null);
-        //    xDoc.AppendChild(GlobalNode);
-
-        //    XmlNode rootNode = xDoc.CreateElement("AllData");
-        //    if (EnterpriseFactory.Instance.Experts.Count != 0)
-        //    {
-        //        XmlElement experts = xDoc.CreateElement("Experts");
-        //        rootNode.AppendChild(experts);
-        //        foreach (Expert exp in EnterpriseFactory.Instance.Experts)
-        //        {
-        //            XmlElement expert = xDoc.CreateElement("Expert");
-        //            experts.AppendChild(expert);
-        //            exp.SerializeProperties(expert);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        //Show error
-        //    }
-        //    if (EnterpriseFactory.Instance.Risks.Count != 0)
-        //    {
-        //        XmlElement risks = xDoc.CreateElement("Risks");
-        //        rootNode.AppendChild(risks);
-        //        foreach (Risk rsk in EnterpriseFactory.Instance.Risks)
-        //        {
-        //            XmlElement risk = xDoc.CreateElement("Risk");
-        //            risks.AppendChild(risk);
-        //            rsk.SerializeProperties(risk);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        //Show error
-        //    }
-        //    if (EnterpriseFactory.Instance.Results.Count != 0)
-        //    {
-        //        XmlElement Results = xDoc.CreateElement("Results");
-        //        rootNode.AppendChild(Results);
-        //        foreach (Result ass in EnterpriseFactory.Instance.Results)
-        //        {
-        //            XmlElement Result = xDoc.CreateElement("Result");
-        //            Results.AppendChild(Result);
-        //            ass.SerializeProperties(Result);
-        //        }
-        //    }
-        //    else
-        //    {
-        //        //Show error
-        //    }
-        //    xDoc.AppendChild(rootNode);
-        //    xDoc.Save(System.IO.Path.Combine(EnterpriseFactory.AppDataDirectory, "Config.xml"));
-        //}
+        
         #endregion
 
     }
@@ -236,5 +179,36 @@ namespace WpfApplication1
             throw new NotSupportedException();
         }
     }
+    public class SeriesData
+    {
+        public string SeriesDisplayName { get; set; }
 
+        public string SeriesDescription { get; set; }
+
+        public ObservableCollection<SeriesElement> Items { get; set; }
+    }
+    public class SeriesElement : INotifyPropertyChanged
+    {
+        public string Category { get; set; }
+
+        private float _number = 0;
+        public float Number
+        {
+            get
+            {
+                return _number;
+            }
+            set
+            {
+                _number = value;
+                if (PropertyChanged != null)
+                {
+                    this.PropertyChanged(this, new PropertyChangedEventArgs("Number"));
+                }
+            }
+
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+    }
 }
